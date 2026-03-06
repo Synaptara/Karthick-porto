@@ -35,6 +35,8 @@ class handler(BaseHTTPRequestHandler):
             req = urllib.request.Request('https://api.resend.com/emails', data=payload, method='POST')
             req.add_header('Authorization', f'Bearer {api_key}')
             req.add_header('Content-Type', 'application/json')
+            # THIS IS THE FIX FOR THE 1010 ERROR:
+            req.add_header('User-Agent', 'Portfolio-Contact-Form/1.0') 
 
             try:
                 response = urllib.request.urlopen(req)
